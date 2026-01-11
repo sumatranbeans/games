@@ -1,0 +1,517 @@
+/* Alias Auction - Minimal Variant - Controller Styles */
+
+:root {
+  --black: #000000;
+  --white: #FFFFFF;
+  --accent: #FF5722;
+  --gray-100: #F5F5F5;
+  --gray-200: #E0E0E0;
+  --gray-400: #9E9E9E;
+  --success: #4CAF50;
+  --fail: #F44336;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--white);
+  color: var(--black);
+  min-height: 100vh;
+}
+
+#app {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.screen {
+  display: none;
+  width: 100%;
+  min-height: 100vh;
+  padding: 40px 25px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.screen.active {
+  display: flex;
+  opacity: 1;
+}
+
+/* Typography */
+h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--gray-400);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 20px;
+}
+
+.status {
+  font-size: 1rem;
+  color: var(--gray-400);
+}
+
+/* Buttons */
+.btn {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 14px 40px;
+  border: 1px solid var(--black);
+  background: var(--white);
+  color: var(--black);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn:active {
+  background: var(--black);
+  color: var(--white);
+}
+
+.btn-accent {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--white);
+}
+
+.btn-accent:active {
+  background: #E64A19;
+  border-color: #E64A19;
+}
+
+.btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* Error */
+.error {
+  color: var(--fail);
+  font-size: 0.875rem;
+  margin-top: 15px;
+}
+
+.error.hidden {
+  display: none;
+}
+
+/* Join Screen */
+#join-screen h1 {
+  margin-bottom: 50px;
+}
+
+.join-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  max-width: 280px;
+}
+
+.join-form input {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  padding: 14px 20px;
+  border: 1px solid var(--gray-200);
+  text-align: center;
+}
+
+.join-form input:focus {
+  outline: none;
+  border-color: var(--black);
+}
+
+/* Waiting Screen */
+.player-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 600;
+  border: 1px solid var(--black);
+}
+
+.host-controls {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.host-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--gray-400);
+}
+
+.host-controls.hidden {
+  display: none;
+}
+
+/* Reveal Screen */
+#reveal-screen {
+  background: var(--black);
+  color: var(--white);
+}
+
+#reveal-screen .label {
+  color: var(--gray-400);
+}
+
+.big-word {
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+/* Bidding Screen */
+#bidding-screen {
+  justify-content: flex-start;
+  padding-top: 30px;
+}
+
+.bid-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.word-tag {
+  display: inline-block;
+  font-size: 1.25rem;
+  font-weight: 600;
+  padding: 10px 25px;
+  border: 1px solid var(--black);
+  margin-bottom: 15px;
+}
+
+.current {
+  font-size: 1.25rem;
+  margin-bottom: 5px;
+}
+
+.current span {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.by {
+  font-size: 0.875rem;
+  color: var(--gray-400);
+}
+
+.bid-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 280px;
+  flex: 1;
+  justify-content: center;
+}
+
+.bid-btn {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding: 18px;
+  border: 1px solid var(--gray-200);
+  background: var(--white);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  -webkit-tap-highlight-color: transparent;
+  transition: all 0.15s ease;
+}
+
+.bid-btn:active {
+  border-color: var(--black);
+}
+
+.bid-btn:disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
+.bid-btn.accent {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.bid-btn span {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--gray-400);
+}
+
+.timer-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gray-100);
+}
+
+.timer-progress {
+  height: 100%;
+  background: var(--black);
+  transition: width 0.3s linear;
+  width: 100%;
+}
+
+/* Describing Screen */
+#describing-screen {
+  background: var(--black);
+  color: var(--white);
+}
+
+#describe-target {
+  margin-bottom: 10px;
+}
+
+.limit {
+  font-size: 1rem;
+  margin-bottom: 40px;
+}
+
+.limit span {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.input-group {
+  width: 100%;
+  max-width: 280px;
+  margin-bottom: 20px;
+}
+
+.input-group input {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  padding: 14px 20px;
+  border: 1px solid var(--gray-600);
+  background: transparent;
+  color: var(--white);
+  width: 100%;
+  text-align: center;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: var(--white);
+}
+
+.input-group input::placeholder {
+  color: var(--gray-400);
+}
+
+.word-count {
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--gray-400);
+  margin-top: 10px;
+}
+
+#describing-screen .btn-accent {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+#describing-screen .error {
+  color: var(--accent);
+}
+
+/* Watch Screen */
+.dots {
+  display: flex;
+  gap: 6px;
+  margin-top: 20px;
+}
+
+.dots span {
+  width: 6px;
+  height: 6px;
+  background: var(--black);
+  border-radius: 50%;
+  animation: pulse 1.4s ease infinite;
+}
+
+.dots span:nth-child(2) { animation-delay: 0.2s; }
+.dots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes pulse {
+  0%, 80%, 100% { opacity: 0.2; }
+  40% { opacity: 1; }
+}
+
+/* Voting Screen */
+.preview {
+  font-size: 1.75rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.for {
+  font-size: 1rem;
+  color: var(--gray-400);
+  margin-bottom: 40px;
+}
+
+.for span {
+  color: var(--black);
+  font-weight: 600;
+}
+
+.vote-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.vote-btn {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 18px 35px;
+  border: 1px solid;
+  background: var(--white);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: all 0.15s ease;
+}
+
+.vote-btn.success {
+  border-color: var(--success);
+  color: var(--success);
+}
+
+.vote-btn.success:active {
+  background: var(--success);
+  color: var(--white);
+}
+
+.vote-btn.fail {
+  border-color: var(--fail);
+  color: var(--fail);
+}
+
+.vote-btn.fail:active {
+  background: var(--fail);
+  color: var(--white);
+}
+
+/* Vote Wait Screen */
+.count {
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: var(--gray-400);
+  margin-top: 20px;
+}
+
+/* Results Screen */
+.result {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.result.success {
+  color: var(--success);
+}
+
+.result.fail {
+  color: var(--fail);
+}
+
+.points {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.score {
+  font-size: 1rem;
+  color: var(--gray-400);
+  margin-top: 15px;
+}
+
+.score span {
+  color: var(--black);
+  font-weight: 600;
+}
+
+/* Game Over Screen */
+#gameover-screen {
+  background: var(--black);
+  color: var(--white);
+}
+
+#gameover-screen .label {
+  color: var(--gray-400);
+}
+
+.my-result {
+  text-align: center;
+  padding: 30px;
+  border: 1px solid var(--gray-600);
+  margin-bottom: 30px;
+}
+
+.my-result .rank {
+  font-size: 3rem;
+  font-weight: 800;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.my-result p {
+  font-size: 1rem;
+  color: var(--gray-400);
+}
+
+#gameover-screen .btn {
+  background: var(--white);
+  color: var(--black);
+  border-color: var(--white);
+}
+
+/* Utility */
+.hidden {
+  display: none !important;
+}

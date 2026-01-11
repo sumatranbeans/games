@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Alias Auction</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Join Screen -->
+    <div id="join-screen" class="screen active">
+      <h1>Alias Auction</h1>
+      <div class="join-form">
+        <input type="text" id="player-name" placeholder="Name" maxlength="12" autocomplete="off">
+        <button id="join-btn" class="btn">Join</button>
+      </div>
+      <p id="join-error" class="error hidden"></p>
+    </div>
+
+    <!-- Waiting Screen -->
+    <div id="waiting-screen" class="screen">
+      <div class="player-display">
+        <div id="my-avatar" class="avatar"></div>
+        <p id="my-name">Player</p>
+      </div>
+      <p class="status">Waiting</p>
+      <div id="host-controls" class="host-controls hidden">
+        <p class="host-label">Host</p>
+        <button id="start-btn" class="btn btn-accent">Start</button>
+      </div>
+    </div>
+
+    <!-- Word Reveal Screen -->
+    <div id="reveal-screen" class="screen">
+      <p class="label">Round <span id="reveal-round">1</span></p>
+      <h1 id="reveal-word" class="big-word">GIRAFFE</h1>
+    </div>
+
+    <!-- Bidding Screen -->
+    <div id="bidding-screen" class="screen">
+      <div class="bid-header">
+        <span id="bid-word" class="word-tag">GIRAFFE</span>
+        <p class="current">Current: <span id="current-bid">5</span></p>
+        <p class="by" id="current-bidder">-</p>
+      </div>
+      <div class="bid-buttons">
+        <button class="bid-btn" data-bid="4">4<span>+2</span></button>
+        <button class="bid-btn" data-bid="3">3<span>+3</span></button>
+        <button class="bid-btn" data-bid="2">2<span>+4</span></button>
+        <button class="bid-btn accent" data-bid="1">1<span>+5</span></button>
+      </div>
+      <div class="timer-bar">
+        <div id="bid-timer-bar" class="timer-progress"></div>
+      </div>
+    </div>
+
+    <!-- Describing Screen -->
+    <div id="describing-screen" class="screen">
+      <p class="label">Describe</p>
+      <h2 id="describe-target">GIRAFFE</h2>
+      <p class="limit"><span id="word-budget">3</span> words</p>
+      <div class="input-group">
+        <input type="text" id="description-input" placeholder="Your clue" autocomplete="off">
+        <p id="word-count" class="word-count">0</p>
+      </div>
+      <button id="submit-description" class="btn btn-accent">Submit</button>
+      <p id="description-error" class="error hidden"></p>
+    </div>
+
+    <!-- Watch Screen -->
+    <div id="watch-screen" class="screen">
+      <p class="status"><span id="describer-name">Player</span> is thinking</p>
+      <div class="dots">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <!-- Voting Screen -->
+    <div id="voting-screen" class="screen">
+      <p class="preview">"<span id="vote-description">tall spotted animal</span>"</p>
+      <p class="for"><span id="vote-target">GIRAFFE</span></p>
+      <div class="vote-buttons">
+        <button id="vote-success" class="vote-btn success">Yes</button>
+        <button id="vote-fail" class="vote-btn fail">No</button>
+      </div>
+    </div>
+
+    <!-- Vote Wait Screen -->
+    <div id="vote-wait-screen" class="screen">
+      <p class="status">Voting</p>
+      <p class="count"><span id="votes-cast">0</span> / <span id="total-voters">3</span></p>
+    </div>
+
+    <!-- Results Screen -->
+    <div id="results-screen" class="screen">
+      <h1 id="result-text" class="result">Success</h1>
+      <p class="points"><span id="points-change">+3</span></p>
+      <p class="score">Score: <span id="my-score">5</span></p>
+    </div>
+
+    <!-- Game Over Screen -->
+    <div id="gameover-screen" class="screen">
+      <p class="label">Game Over</p>
+      <div id="my-result" class="my-result"></div>
+      <button id="play-again-btn" class="btn">Again</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

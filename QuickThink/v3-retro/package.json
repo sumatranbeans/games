@@ -1,0 +1,14 @@
+{
+  "name": "quickthink-v3-retro",
+  "version": "1.0.0",
+  "description": "Quick Think - Retro variant: Game show, arcade, pixel aesthetic",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "ws": "^8.14.2",
+    "qrcode": "^1.5.3"
+  }
+}
