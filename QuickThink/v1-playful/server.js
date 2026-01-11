@@ -51,6 +51,7 @@ function generatePlayerId() {
 app.use('/tv', express.static(path.join(__dirname, 'public/tv')));
 app.use('/controller', express.static(path.join(__dirname, 'public/controller')));
 app.use('/assets', express.static(path.join(__dirname, 'public/assets')));
+app.use('/shared', express.static(path.join(__dirname, 'public/shared')));
 
 // API endpoint to create a room
 app.get('/api/create-room', (req, res) => {
@@ -98,10 +99,13 @@ function broadcast(roomCode, message, excludeWs = null) {
   if (!room) return;
 
   const messageStr = JSON.stringify(message);
+  let playersSent = 0;
+  let tvsSent = 0;
 
   room.players.forEach((player) => {
     if (player.ws && player.ws !== excludeWs && player.ws.readyState === WebSocket.OPEN) {
       player.ws.send(messageStr);
+      playersSent++;
     }
   });
 
@@ -110,9 +114,12 @@ function broadcast(roomCode, message, excludeWs = null) {
     room.tvClients.forEach(tvWs => {
       if (tvWs && tvWs.readyState === WebSocket.OPEN) {
         tvWs.send(messageStr);
+        tvsSent++;
       }
     });
   }
+
+  console.log(`[Broadcast] ${message.type} to room ${roomCode}: ${playersSent} players, ${tvsSent} TVs`);
 }
 
 // Send to specific client
@@ -254,6 +261,7 @@ function runScoring(roomCode) {
   if (!room) return;
 
   const roundPoints = room.calculateScores();
+  const detailedResults = room.getDetailedResults();
 
   broadcast(roomCode, {
     type: 'PHASE_CHANGE',
@@ -261,7 +269,8 @@ function runScoring(roomCode) {
       phase: PHASES.SCORING,
       roundPoints,
       scores: room.scores,
-      markedAnswers: room.markedAnswers
+      markedAnswers: room.markedAnswers,
+      detailedResults
     }
   });
 
@@ -338,8 +347,11 @@ wss.on('connection', (ws, req) => {
         roomCode = payload.roomCode;
         const playerName = payload.playerName;
 
+        console.log(`[Server] Player "${playerName}" attempting to join room ${roomCode}`);
+
         const room = rooms.get(roomCode);
         if (!room) {
+          console.log(`[Server] Room ${roomCode} not found`);
           sendTo(ws, { type: 'ERROR', payload: { message: 'Room not found' } });
           return;
         }
@@ -348,9 +360,12 @@ wss.on('connection', (ws, req) => {
         const result = room.addPlayer(playerId, playerName, ws);
 
         if (!result.success) {
+          console.log(`[Server] Failed to add player: ${result.error}`);
           sendTo(ws, { type: 'ERROR', payload: { message: result.error } });
           return;
         }
+
+        console.log(`[Server] Player "${playerName}" joined as ${playerId}. Total players: ${room.players.size}`);
 
         // Confirm join to player
         sendTo(ws, {
@@ -364,34 +379,51 @@ wss.on('connection', (ws, req) => {
         });
 
         // Broadcast updated player list
+        const playerList = room.getPlayerList();
+        console.log(`[Server] Broadcasting PLAYER_JOINED with ${playerList.length} players to room ${roomCode}`);
+
         broadcast(roomCode, {
           type: 'PLAYER_JOINED',
           payload: {
             playerId,
             playerName,
-            players: room.getPlayerList()
+            players: playerList
           }
         });
         break;
       }
 
       case 'START_GAME': {
-        const room = rooms.get(roomCode);
-        if (!room) return;
+        console.log(`[Server] START_GAME received - roomCode: ${roomCode}, isTV: ${isTV}, playerId: ${playerId}`);
 
-        // Only host can start
+        const room = rooms.get(roomCode);
+        if (!room) {
+          console.log(`[Server] START_GAME failed - room not found for code: ${roomCode}`);
+          sendTo(ws, { type: 'ERROR', payload: { message: 'Room not found' } });
+          return;
+        }
+
+        console.log(`[Server] Room found - players: ${room.players.size}, hostId: ${room.hostId}`);
+
+        // Only host can start (or TV can start on behalf of host)
         if (playerId !== room.hostId && !isTV) {
+          console.log(`[Server] START_GAME denied - not host and not TV`);
           sendTo(ws, { type: 'ERROR', payload: { message: 'Only host can start' } });
           return;
         }
 
         const gameLength = payload?.gameLength || 'standard';
+        console.log(`[Server] Starting game with length: ${gameLength}`);
+
         const result = room.startGame(gameLength);
 
         if (!result.success) {
+          console.log(`[Server] startGame failed: ${result.error}`);
           sendTo(ws, { type: 'ERROR', payload: { message: result.error } });
           return;
         }
+
+        console.log(`[Server] Game started successfully! Broadcasting to room ${roomCode}`);
 
         broadcast(roomCode, {
           type: 'GAME_STARTED',
@@ -401,6 +433,7 @@ wss.on('connection', (ws, req) => {
         });
 
         // Start first round
+        console.log(`[Server] Starting first round in 1 second...`);
         setTimeout(() => runCategoryReveal(roomCode), 1000);
         break;
       }

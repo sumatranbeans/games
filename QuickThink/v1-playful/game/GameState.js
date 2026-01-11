@@ -1,7 +1,7 @@
 // Quick Think - Game State Management
 
 const { getRandomCategory, getCategoriesForGame } = require('./categories');
-const { findDuplicates, calculateRoundPoints, updateScores, getWinners } = require('./scoring');
+const { findDuplicates, calculateRoundPoints, getDetailedResults, updateScores, getWinners } = require('./scoring');
 
 // Game phases
 const PHASES = {
@@ -198,6 +198,11 @@ class GameState {
     this.scores = updateScores(this.scores, roundPoints);
 
     return roundPoints;
+  }
+
+  // Get detailed results for display (breakdown of unique, duplicates, bonus)
+  getDetailedResults() {
+    return getDetailedResults(this.markedAnswers);
   }
 
   // Check if game is over

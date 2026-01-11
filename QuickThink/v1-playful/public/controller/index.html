@@ -70,16 +70,25 @@
           <input
             type="text"
             id="answer-input"
-            placeholder="Type your answer..."
+            placeholder="Type an answer, press Enter"
             maxlength="50"
             autocomplete="off"
             autocorrect="off"
             autocapitalize="off"
           />
-          <div class="char-count"><span id="char-count">0</span>/50</div>
+          <div class="entry-hint">Press Enter to add</div>
         </div>
 
-        <p class="typing-hint">Think unique! Duplicates get eliminated.</p>
+        <!-- Entry list container -->
+        <div class="entries-list" id="entries-list">
+          <!-- Entries will be added here dynamically -->
+        </div>
+
+        <div class="entries-count">
+          <span id="entry-count">0</span> answers added
+        </div>
+
+        <p class="typing-hint">More unique answers = more points!</p>
       </div>
     </div>
 
@@ -92,8 +101,10 @@
             <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
           </svg>
         </div>
-        <h2>Answer Submitted!</h2>
-        <p class="submitted-answer" id="submitted-answer"></p>
+        <h2>Answers Submitted!</h2>
+        <div class="submitted-entries" id="submitted-entries">
+          <!-- List of submitted entries will appear here -->
+        </div>
         <p class="watch-tv">Watch the TV for results...</p>
       </div>
     </div>
