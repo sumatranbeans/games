@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>ALIAS AUCTION - ARCADE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="scanlines"></div>
+
+  <div id="app">
+    <!-- Join Screen -->
+    <div id="join-screen" class="screen active">
+      <h1 class="neon-text">ALIAS<br>AUCTION</h1>
+      <div class="join-form">
+        <input type="text" id="player-name" placeholder="ENTER NAME" maxlength="8" autocomplete="off">
+        <button id="join-btn" class="arcade-btn">START</button>
+      </div>
+      <p id="join-error" class="error hidden"></p>
+      <p class="blink insert-coin">INSERT COIN</p>
+    </div>
+
+    <!-- Waiting Screen -->
+    <div id="waiting-screen" class="screen">
+      <div class="player-display">
+        <div id="my-avatar" class="pixel-avatar"></div>
+        <p id="my-name" class="neon-text">PLAYER</p>
+      </div>
+      <p class="status blink">WAITING...</p>
+      <div id="host-controls" class="host-controls hidden">
+        <p class="host-label">PLAYER 1</p>
+        <button id="start-btn" class="arcade-btn start">PRESS START</button>
+      </div>
+    </div>
+
+    <!-- Word Reveal Screen -->
+    <div id="reveal-screen" class="screen">
+      <p class="stage">STAGE <span id="reveal-round">1</span></p>
+      <p class="target-label">TARGET:</p>
+      <h1 id="reveal-word" class="pixel-word">GIRAFFE</h1>
+      <p class="get-ready blink">GET READY!</p>
+    </div>
+
+    <!-- Bidding Screen -->
+    <div id="bidding-screen" class="screen">
+      <div class="bid-header">
+        <span id="bid-word" class="word-display">GIRAFFE</span>
+        <p class="current-bid">BID: <span id="current-bid">5</span></p>
+        <p class="by" id="current-bidder">-</p>
+      </div>
+      <div class="bid-buttons">
+        <button class="bid-btn" data-bid="4">4 <span>+2 PTS</span></button>
+        <button class="bid-btn" data-bid="3">3 <span>+3 PTS</span></button>
+        <button class="bid-btn" data-bid="2">2 <span>+4 PTS</span></button>
+        <button class="bid-btn legendary" data-bid="1">1 <span>LEGENDARY!</span></button>
+      </div>
+      <div class="pixel-timer">
+        <div id="bid-timer-bar" class="timer-fill"></div>
+      </div>
+    </div>
+
+    <!-- Describing Screen -->
+    <div id="describing-screen" class="screen">
+      <p class="stage">DESCRIBE</p>
+      <h2 id="describe-target" class="neon-text">GIRAFFE</h2>
+      <p class="limit"><span id="word-budget">3</span> WORDS MAX</p>
+      <div class="input-group">
+        <input type="text" id="description-input" placeholder="TYPE CLUE" autocomplete="off">
+        <p id="word-count" class="word-count">0 WORDS</p>
+      </div>
+      <button id="submit-description" class="arcade-btn">SUBMIT</button>
+      <p id="description-error" class="error hidden"></p>
+    </div>
+
+    <!-- Watch Screen -->
+    <div id="watch-screen" class="screen">
+      <p class="status"><span id="describer-name">PLAYER</span></p>
+      <p class="thinking blink">THINKING...</p>
+      <div class="loading-bar">
+        <span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <!-- Voting Screen -->
+    <div id="voting-screen" class="screen">
+      <p class="clue-label">CLUE:</p>
+      <p class="clue-text">"<span id="vote-description">TALL SPOTTED ANIMAL</span>"</p>
+      <p class="for-word">FOR: <span id="vote-target">GIRAFFE</span></p>
+      <div class="vote-buttons">
+        <button id="vote-success" class="vote-btn success">YES</button>
+        <button id="vote-fail" class="vote-btn fail">NO</button>
+      </div>
+    </div>
+
+    <!-- Vote Wait Screen -->
+    <div id="vote-wait-screen" class="screen">
+      <p class="status">VOTING</p>
+      <p class="vote-count"><span id="votes-cast">0</span>/<span id="total-voters">3</span></p>
+      <div class="loading-bar">
+        <span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <!-- Results Screen -->
+    <div id="results-screen" class="screen">
+      <h1 id="result-text" class="result flash">SUCCESS!</h1>
+      <p class="points"><span id="points-change">+3</span> PTS</p>
+      <p class="score">SCORE: <span id="my-score">5</span></p>
+    </div>
+
+    <!-- Game Over Screen -->
+    <div id="gameover-screen" class="screen">
+      <h1 class="gameover flash">GAME OVER</h1>
+      <div id="my-result" class="my-result"></div>
+      <button id="play-again-btn" class="arcade-btn">CONTINUE?</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
