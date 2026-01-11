@@ -1,0 +1,17 @@
+{
+  "name": "alias-auction-minimal",
+  "version": "1.0.0",
+  "description": "Alias Auction - Minimal Variant - Clean, modern, elegant design",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "ws": "^8.14.2",
+    "qrcode": "^1.5.3"
+  },
+  "keywords": ["game", "multiplayer", "word-game", "family"],
+  "author": "",
+  "license": "ISC"
+}

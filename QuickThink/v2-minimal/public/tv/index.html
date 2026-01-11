@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quick Think</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="screen active">
+      <div class="loading-content">
+        <h1>Quick Think</h1>
+        <p>Creating room...</p>
+      </div>
+    </div>
+
+    <!-- Lobby Screen -->
+    <div id="lobby-screen" class="screen">
+      <header>
+        <h1>Quick Think</h1>
+      </header>
+
+      <main class="lobby-main">
+        <div class="join-section">
+          <div class="room-code" id="room-code">----</div>
+          <img id="qr-code" alt="Scan to join" />
+          <p class="join-url" id="join-url"></p>
+        </div>
+
+        <div class="players-section">
+          <h2>Players</h2>
+          <ul class="player-list" id="player-list">
+            <!-- Players will be added here -->
+          </ul>
+        </div>
+      </main>
+
+      <footer class="lobby-footer">
+        <div class="game-options">
+          <select id="game-length">
+            <option value="quick">5 rounds</option>
+            <option value="standard" selected>10 rounds</option>
+            <option value="extended">15 rounds</option>
+          </select>
+          <button id="start-btn" disabled>Start</button>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Category Screen -->
+    <div id="category-screen" class="screen">
+      <div class="round-info">
+        <span id="current-round">1</span> / <span id="total-rounds">10</span>
+      </div>
+      <div class="category" id="category-text"></div>
+    </div>
+
+    <!-- Countdown Screen -->
+    <div id="countdown-screen" class="screen">
+      <div class="countdown" id="countdown-number">3</div>
+    </div>
+
+    <!-- Typing Screen -->
+    <div id="typing-screen" class="screen">
+      <div class="typing-info">
+        <span class="category-reminder" id="category-reminder"></span>
+        <span class="timer" id="typing-timer">10</span>
+      </div>
+      <div class="typing-status">
+        <p>Waiting for answers...</p>
+        <div class="player-status" id="player-status">
+          <!-- Player status indicators -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Reveal Screen -->
+    <div id="reveal-screen" class="screen">
+      <div class="reveal-category" id="reveal-category"></div>
+      <ul class="answer-list" id="answer-list">
+        <!-- Answers will appear here -->
+      </ul>
+    </div>
+
+    <!-- Scoring Screen -->
+    <div id="scoring-screen" class="screen">
+      <h2>Scores</h2>
+      <table class="score-table" id="score-table">
+        <thead>
+          <tr>
+            <th>Player</th>
+            <th>+</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody id="score-body">
+          <!-- Scores will be added here -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Game Over Screen -->
+    <div id="gameover-screen" class="screen">
+      <div class="winner-section">
+        <p class="winner-label">Winner</p>
+        <h1 class="winner-name" id="winner-name"></h1>
+      </div>
+      <table class="final-table" id="final-table">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Player</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody id="final-body">
+          <!-- Final scores will be added here -->
+        </tbody>
+      </table>
+      <button id="play-again-btn">Play Again</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

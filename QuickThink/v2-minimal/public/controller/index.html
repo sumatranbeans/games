@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Quick Think</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Join Screen -->
+    <div id="join-screen" class="screen active">
+      <h1>Quick Think</h1>
+      <div class="form">
+        <input
+          type="text"
+          id="player-name"
+          placeholder="Your name"
+          maxlength="12"
+          autocomplete="off"
+          autocorrect="off"
+          autocapitalize="words"
+        />
+        <button id="join-btn" disabled>Join</button>
+      </div>
+      <p class="room-info">Room <span id="room-code">----</span></p>
+    </div>
+
+    <!-- Waiting Screen -->
+    <div id="waiting-screen" class="screen">
+      <div class="status">
+        <h2 id="player-display-name"></h2>
+        <p id="host-status"></p>
+      </div>
+      <p class="instruction">Watch the TV</p>
+    </div>
+
+    <!-- Ready Screen -->
+    <div id="ready-screen" class="screen">
+      <p class="category-label" id="ready-category"></p>
+      <div class="countdown" id="ready-countdown">3</div>
+    </div>
+
+    <!-- Typing Screen -->
+    <div id="typing-screen" class="screen">
+      <div class="typing-header">
+        <span class="category" id="typing-category"></span>
+        <span class="timer" id="timer-display">10</span>
+      </div>
+      <input
+        type="text"
+        id="answer-input"
+        placeholder="Your answer"
+        maxlength="50"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+      />
+      <p class="hint">Avoid duplicates</p>
+    </div>
+
+    <!-- Locked Screen -->
+    <div id="locked-screen" class="screen">
+      <p class="submitted-label">Submitted</p>
+      <p class="submitted-answer" id="submitted-answer"></p>
+    </div>
+
+    <!-- Reveal Screen -->
+    <div id="reveal-screen" class="screen">
+      <p class="instruction">Watch the TV</p>
+    </div>
+
+    <!-- Score Screen -->
+    <div id="score-screen" class="screen">
+      <p class="score-label">Score</p>
+      <div class="score" id="my-score">0</div>
+      <p class="result" id="round-result"></p>
+    </div>
+
+    <!-- Game Over Screen -->
+    <div id="gameover-screen" class="screen">
+      <h2 id="result-message">Game Over</h2>
+      <div class="final-score" id="final-score">0</div>
+      <p class="hint">Waiting for next game</p>
+    </div>
+
+    <!-- Error Screen -->
+    <div id="error-screen" class="screen">
+      <h2>Disconnected</h2>
+      <p>Reconnecting...</p>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

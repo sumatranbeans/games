@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alias Auction</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Lobby Screen -->
+    <div id="lobby-screen" class="screen active">
+      <header>
+        <h1>Alias Auction</h1>
+      </header>
+
+      <div class="lobby-content">
+        <div class="qr-section">
+          <div class="qr-container">
+            <img id="qr-code" src="" alt="QR Code">
+          </div>
+          <p class="room-code"><span id="room-code-display">----</span></p>
+          <p class="join-url" id="join-url"></p>
+        </div>
+
+        <div class="players-section">
+          <p class="player-count"><span id="player-count">0</span> / 6 players</p>
+          <div id="players-list" class="players-list"></div>
+        </div>
+      </div>
+
+      <footer class="game-settings">
+        <select id="difficulty-select">
+          <option value="easy">Easy</option>
+          <option value="medium" selected>Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+        <select id="rounds-select">
+          <option value="quick">5 rounds</option>
+          <option value="standard" selected>7 rounds</option>
+          <option value="extended">10 rounds</option>
+        </select>
+      </footer>
+    </div>
+
+    <!-- Word Reveal Screen -->
+    <div id="word-reveal-screen" class="screen">
+      <p class="phase-label">Round <span id="reveal-round">1</span></p>
+      <h1 id="reveal-word" class="reveal-word">GIRAFFE</h1>
+      <div class="timer-line">
+        <div id="reveal-timer-bar" class="timer-progress"></div>
+      </div>
+    </div>
+
+    <!-- Bidding Screen -->
+    <div id="bidding-screen" class="screen">
+      <p class="phase-label">Round <span id="bidding-round">1</span></p>
+
+      <div class="word-display">
+        <span id="bidding-word">GIRAFFE</span>
+      </div>
+
+      <div class="bid-display">
+        <span class="bid-number" id="current-bid">5</span>
+        <span class="bid-label">words</span>
+      </div>
+
+      <div class="bidder-info">
+        <p id="bidder-name">No bids yet</p>
+        <p class="points-value"><span id="potential-points">1</span> pts</p>
+      </div>
+
+      <div class="timer-display"><span id="bidding-timer">30</span></div>
+
+      <div class="scoreboard" id="bidding-scoreboard"></div>
+    </div>
+
+    <!-- Describing Screen -->
+    <div id="describing-screen" class="screen">
+      <p class="phase-label">Describe</p>
+
+      <div class="describe-info">
+        <p class="describer"><span id="describer-name">Player</span></p>
+        <h1 id="describe-word" class="describe-word">GIRAFFE</h1>
+        <p class="limit"><span id="word-limit">3</span> words</p>
+      </div>
+
+      <div class="waiting-indicator">
+        <span></span><span></span><span></span>
+      </div>
+
+      <div class="timer-display"><span id="describing-timer">20</span></div>
+    </div>
+
+    <!-- Voting Screen -->
+    <div id="voting-screen" class="screen">
+      <p class="phase-label">Vote</p>
+
+      <div class="description-display">
+        <p class="by"><span id="voter-describer-name">Player</span></p>
+        <h2 id="shown-description" class="description">"tall spotted animal"</h2>
+        <p class="for-word"><span id="vote-word">GIRAFFE</span></p>
+      </div>
+
+      <div class="vote-count">
+        <span id="votes-received">0</span> / <span id="total-voters">3</span>
+      </div>
+
+      <div class="timer-display"><span id="voting-timer">15</span></div>
+    </div>
+
+    <!-- Results Screen -->
+    <div id="results-screen" class="screen">
+      <div id="result-success" class="result success hidden">
+        <h1>Success</h1>
+      </div>
+      <div id="result-fail" class="result fail hidden">
+        <h1>Failed</h1>
+      </div>
+      <div class="result-details">
+        <p><span id="result-describer">Player</span></p>
+        <p class="points"><span id="result-points">+3</span></p>
+        <p class="votes"><span id="success-votes">2</span> yes / <span id="fail-votes">1</span> no</p>
+      </div>
+    </div>
+
+    <!-- Game Over Screen -->
+    <div id="gameover-screen" class="screen">
+      <p class="phase-label">Game Over</p>
+
+      <div class="winner-display">
+        <h1 id="winner-name">Player</h1>
+        <p id="winner-score">15</p>
+      </div>
+
+      <div class="final-scores" id="final-scoreboard"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
