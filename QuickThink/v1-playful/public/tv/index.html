@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quick Think - TV Display</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="screen active">
+      <div class="loading-content">
+        <h1 class="game-title">QUICK THINK</h1>
+        <p class="tagline">Name it before the buzzer - but don't repeat anyone!</p>
+        <div class="loader"></div>
+        <p>Creating room...</p>
+      </div>
+    </div>
+
+    <!-- Lobby Screen -->
+    <div id="lobby-screen" class="screen">
+      <div class="lobby-header">
+        <h1 class="game-title">QUICK THINK</h1>
+        <p class="tagline">Name it before the buzzer - but don't repeat anyone!</p>
+      </div>
+
+      <div class="lobby-main">
+        <div class="qr-section">
+          <div class="room-code-label">ROOM CODE</div>
+          <div class="room-code" id="room-code">----</div>
+          <div class="qr-container">
+            <img id="qr-code" alt="QR Code to join" />
+          </div>
+          <p class="scan-text">Scan to join!</p>
+        </div>
+
+        <div class="players-section">
+          <h2>Players</h2>
+          <div class="players-grid" id="players-grid">
+            <!-- Player cards will be added here -->
+          </div>
+          <p class="waiting-text" id="waiting-text">Waiting for players...</p>
+        </div>
+      </div>
+
+      <div class="lobby-footer">
+        <div class="game-length-selector" id="game-length-selector">
+          <button class="length-btn" data-length="quick">Quick (5)</button>
+          <button class="length-btn active" data-length="standard">Standard (10)</button>
+          <button class="length-btn" data-length="extended">Extended (15)</button>
+        </div>
+        <button id="start-btn" class="start-btn" disabled>Need 2+ players to start</button>
+      </div>
+    </div>
+
+    <!-- Category Reveal Screen -->
+    <div id="category-screen" class="screen">
+      <div class="round-indicator">
+        Round <span id="current-round">1</span> of <span id="total-rounds">10</span>
+      </div>
+      <div class="category-container">
+        <div class="category-label">THE CATEGORY IS...</div>
+        <div class="category-text" id="category-text"></div>
+        <div class="speed-lines"></div>
+      </div>
+    </div>
+
+    <!-- Countdown Screen -->
+    <div id="countdown-screen" class="screen">
+      <div class="countdown-number" id="countdown-number">3</div>
+      <div class="get-ready">GET READY!</div>
+    </div>
+
+    <!-- Typing Screen -->
+    <div id="typing-screen" class="screen">
+      <div class="typing-header">
+        <div class="category-reminder" id="category-reminder"></div>
+        <div class="typing-timer" id="typing-timer">10</div>
+      </div>
+      <div class="typing-content">
+        <div class="players-typing-text">Players are typing...</div>
+        <div class="typing-indicators" id="typing-indicators">
+          <!-- Player typing indicators -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Reveal Screen -->
+    <div id="reveal-screen" class="screen">
+      <div class="reveal-header">
+        <div class="category-reminder" id="reveal-category"></div>
+      </div>
+      <div class="answers-container" id="answers-container">
+        <!-- Revealed answers will appear here -->
+      </div>
+    </div>
+
+    <!-- Scoring Screen -->
+    <div id="scoring-screen" class="screen">
+      <h2 class="scoring-title">ROUND RESULTS</h2>
+      <div class="scoreboard" id="scoreboard">
+        <!-- Score cards will appear here -->
+      </div>
+    </div>
+
+    <!-- Game Over Screen -->
+    <div id="gameover-screen" class="screen">
+      <div class="gameover-content">
+        <div class="winner-announce">WINNER!</div>
+        <div class="winner-name" id="winner-name"></div>
+        <div class="final-scores" id="final-scores">
+          <!-- Final score cards -->
+        </div>
+        <button id="play-again-btn" class="play-again-btn">Play Again</button>
+      </div>
+      <div class="confetti-container" id="confetti"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

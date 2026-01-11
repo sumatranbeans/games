@@ -1,0 +1,513 @@
+/* Quick Think - v1-playful Controller Styles */
+/* Mobile-first, touch-friendly interface */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #3B82F6;
+  --secondary: #F97316;
+  --accent: #EAB308;
+  --success: #22C55E;
+  --eliminated: #EF4444;
+  --bg-start: #DBEAFE;
+  --bg-end: #BFDBFE;
+  --text-dark: #1E293B;
+  --text-light: #FFFFFF;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, var(--bg-start) 0%, var(--bg-end) 100%);
+  color: var(--text-dark);
+  -webkit-tap-highlight-color: transparent;
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  text-align: center;
+}
+
+.screen.active {
+  display: flex;
+}
+
+/* Game Title */
+.game-title {
+  font-size: 42px;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+}
+
+.tagline {
+  font-size: 16px;
+  color: var(--text-dark);
+  opacity: 0.7;
+  margin-bottom: 40px;
+}
+
+/* Join Screen */
+.join-content {
+  width: 100%;
+  max-width: 320px;
+}
+
+.join-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+#player-name {
+  width: 100%;
+  padding: 18px 24px;
+  font-size: 20px;
+  font-family: 'Poppins', sans-serif;
+  border: 3px solid var(--primary);
+  border-radius: 16px;
+  background: white;
+  text-align: center;
+  outline: none;
+  transition: all 0.2s;
+}
+
+#player-name:focus {
+  border-color: var(--secondary);
+  box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.2);
+}
+
+.join-btn {
+  width: 100%;
+  padding: 18px;
+  font-size: 20px;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: white;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.join-btn:disabled {
+  background: #CBD5E1;
+  cursor: not-allowed;
+}
+
+.join-btn:not(:disabled):active {
+  transform: scale(0.98);
+}
+
+.room-info {
+  margin-top: 24px;
+  font-size: 14px;
+  color: var(--text-dark);
+  opacity: 0.6;
+}
+
+.room-info span {
+  font-weight: 700;
+  color: var(--primary);
+}
+
+/* Waiting Screen */
+.waiting-content {
+  text-align: center;
+}
+
+.player-avatar-large {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  color: white;
+  font-weight: 700;
+}
+
+.waiting-content h2 {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.host-status {
+  font-size: 14px;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+.waiting-animation {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.waiting-animation .dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--primary);
+  animation: bounce 1.4s ease-in-out infinite;
+}
+
+.waiting-animation .dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.waiting-animation .dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+  0%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-15px); }
+}
+
+.waiting-text {
+  font-size: 18px;
+  color: var(--text-dark);
+  opacity: 0.7;
+}
+
+/* Ready Screen */
+#ready-screen {
+  background: linear-gradient(135deg, var(--primary) 0%, #1D4ED8 100%);
+}
+
+.ready-content {
+  text-align: center;
+  color: white;
+}
+
+.category-display {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  padding: 16px 24px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+}
+
+.countdown-display {
+  font-size: 120px;
+  font-weight: 900;
+  animation: countdown-pulse 1s ease-in-out infinite;
+}
+
+@keyframes countdown-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.ready-text {
+  font-size: 24px;
+  font-weight: 600;
+  margin-top: 20px;
+  opacity: 0.9;
+}
+
+/* Typing Screen */
+#typing-screen {
+  background: linear-gradient(135deg, var(--accent) 0%, #CA8A04 100%);
+  justify-content: flex-start;
+  padding-top: 40px;
+}
+
+.typing-content {
+  width: 100%;
+  max-width: 400px;
+}
+
+.typing-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.category-small {
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  max-width: 60%;
+  text-align: left;
+}
+
+.timer-display {
+  font-size: 48px;
+  font-weight: 900;
+  color: white;
+  animation: timer-pulse 1s ease-in-out infinite;
+}
+
+.timer-display.low {
+  color: var(--eliminated);
+  animation: timer-urgent 0.5s ease-in-out infinite;
+}
+
+@keyframes timer-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes timer-urgent {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+.input-container {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+#answer-input {
+  width: 100%;
+  padding: 24px;
+  font-size: 24px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  border: 4px solid white;
+  border-radius: 20px;
+  background: white;
+  text-align: center;
+  outline: none;
+}
+
+#answer-input:focus {
+  border-color: var(--primary);
+}
+
+.char-count {
+  position: absolute;
+  bottom: -24px;
+  right: 0;
+  font-size: 14px;
+  color: white;
+  opacity: 0.8;
+}
+
+.typing-hint {
+  color: white;
+  font-size: 14px;
+  opacity: 0.9;
+  margin-top: 30px;
+}
+
+/* Locked Screen */
+#locked-screen {
+  background: linear-gradient(135deg, var(--success) 0%, #16A34A 100%);
+}
+
+.locked-content {
+  text-align: center;
+  color: white;
+}
+
+.lock-icon {
+  margin-bottom: 20px;
+  animation: lock-bounce 0.5s ease-out;
+}
+
+@keyframes lock-bounce {
+  0% { transform: scale(0); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.locked-content h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.submitted-answer {
+  font-size: 32px;
+  font-weight: 700;
+  padding: 16px 32px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  margin-bottom: 30px;
+}
+
+.watch-tv {
+  font-size: 18px;
+  opacity: 0.9;
+}
+
+/* Reveal Screen */
+#reveal-screen {
+  background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%);
+}
+
+.reveal-content {
+  text-align: center;
+  color: white;
+}
+
+.eye-icon {
+  margin-bottom: 20px;
+  animation: eye-blink 2s ease-in-out infinite;
+}
+
+@keyframes eye-blink {
+  0%, 45%, 55%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.reveal-content h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+/* Score Screen */
+#score-screen {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+}
+
+.score-content {
+  text-align: center;
+  color: white;
+}
+
+.score-content h2 {
+  font-size: 24px;
+  opacity: 0.9;
+  margin-bottom: 10px;
+}
+
+.my-score {
+  font-size: 120px;
+  font-weight: 900;
+  animation: score-pop 0.5s ease-out;
+}
+
+@keyframes score-pop {
+  0% { transform: scale(0); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.round-result {
+  font-size: 24px;
+  font-weight: 700;
+  padding: 12px 24px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  margin: 20px 0;
+}
+
+.round-result.unique {
+  background: rgba(34, 197, 94, 0.5);
+}
+
+.round-result.eliminated {
+  background: rgba(239, 68, 68, 0.5);
+}
+
+/* Game Over Screen */
+#gameover-screen {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+}
+
+.gameover-content {
+  text-align: center;
+  color: white;
+}
+
+.gameover-content h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.gameover-content h2.winner {
+  color: var(--accent);
+}
+
+.final-score {
+  font-size: 100px;
+  font-weight: 900;
+}
+
+.final-label {
+  font-size: 20px;
+  opacity: 0.9;
+  margin-bottom: 30px;
+}
+
+.play-again-hint {
+  font-size: 16px;
+  opacity: 0.8;
+  padding: 12px 24px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+}
+
+/* Error Screen */
+#error-screen {
+  background: linear-gradient(135deg, #64748B 0%, #475569 100%);
+}
+
+.error-content {
+  text-align: center;
+  color: white;
+}
+
+.error-content h2 {
+  font-size: 28px;
+  margin-bottom: 16px;
+}
+
+.loader {
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  margin: 30px auto;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Safe area for notched phones */
+@supports (padding-top: env(safe-area-inset-top)) {
+  .screen {
+    padding-top: calc(24px + env(safe-area-inset-top));
+    padding-bottom: calc(24px + env(safe-area-inset-bottom));
+  }
+}

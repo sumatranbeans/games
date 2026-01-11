@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alias Auction - TV Display</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Lobby Screen -->
+    <div id="lobby-screen" class="screen active">
+      <div class="header">
+        <h1 class="game-title">Alias Auction</h1>
+        <p class="tagline">"I can describe it in THREE words!" "I can do it in TWO!"</p>
+      </div>
+
+      <div class="lobby-content">
+        <div class="qr-section">
+          <h2>Scan to Join</h2>
+          <div class="qr-container">
+            <img id="qr-code" src="" alt="QR Code">
+          </div>
+          <p class="room-code">Room: <span id="room-code-display">----</span></p>
+          <p class="join-url" id="join-url"></p>
+        </div>
+
+        <div class="players-section">
+          <h2>Players (<span id="player-count">0</span>/6)</h2>
+          <div id="players-list" class="players-list"></div>
+          <div id="start-prompt" class="start-prompt hidden">
+            <p>Waiting for host to start...</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="game-settings">
+        <label>
+          Difficulty:
+          <select id="difficulty-select">
+            <option value="easy">Easy</option>
+            <option value="medium" selected>Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+        </label>
+        <label>
+          Rounds:
+          <select id="rounds-select">
+            <option value="quick">Quick (5)</option>
+            <option value="standard" selected>Standard (7)</option>
+            <option value="extended">Extended (10)</option>
+          </select>
+        </label>
+      </div>
+    </div>
+
+    <!-- Word Reveal Screen -->
+    <div id="word-reveal-screen" class="screen">
+      <div class="phase-label">Round <span id="reveal-round">1</span></div>
+      <div class="word-reveal">
+        <p class="word-intro">The word is...</p>
+        <h1 id="reveal-word" class="reveal-word">GIRAFFE</h1>
+      </div>
+      <div class="timer-bar">
+        <div id="reveal-timer-bar" class="timer-progress"></div>
+      </div>
+    </div>
+
+    <!-- Bidding Screen -->
+    <div id="bidding-screen" class="screen">
+      <div class="phase-label">Round <span id="bidding-round">1</span> - Bidding</div>
+      <div class="bidding-content">
+        <div class="current-word-small">
+          <span id="bidding-word">GIRAFFE</span>
+        </div>
+
+        <div class="bid-display">
+          <div class="bid-info">
+            <p class="bid-label">Current Bid</p>
+            <h1 id="current-bid" class="bid-number">5</h1>
+            <p class="bid-unit">words</p>
+          </div>
+          <div class="bidder-info">
+            <p id="bidder-name">No bids yet</p>
+            <p class="points-preview">Worth <span id="potential-points">1</span> points</p>
+          </div>
+        </div>
+
+        <div class="timer-display">
+          <span id="bidding-timer">30</span>s
+        </div>
+      </div>
+      <div class="scoreboard-mini" id="bidding-scoreboard"></div>
+    </div>
+
+    <!-- Describing Screen -->
+    <div id="describing-screen" class="screen">
+      <div class="phase-label">Describe Time!</div>
+      <div class="describing-content">
+        <div class="describer-info">
+          <p><span id="describer-name">Player</span> must describe</p>
+          <h1 id="describe-word" class="describe-word">GIRAFFE</h1>
+          <p class="word-limit">in <span id="word-limit">3</span> words or less</p>
+        </div>
+        <div class="waiting-animation">
+          <div class="thinking-dots">
+            <span></span><span></span><span></span>
+          </div>
+          <p>Thinking...</p>
+        </div>
+        <div class="timer-display">
+          <span id="describing-timer">20</span>s
+        </div>
+      </div>
+    </div>
+
+    <!-- Voting Screen -->
+    <div id="voting-screen" class="screen">
+      <div class="phase-label">Vote Now!</div>
+      <div class="voting-content">
+        <div class="description-reveal">
+          <p><span id="voter-describer-name">Player</span> said:</p>
+          <h2 id="shown-description" class="description-text">"tall spotted animal"</h2>
+          <p class="for-word">for <span id="vote-word">GIRAFFE</span></p>
+        </div>
+        <div class="vote-prompt">
+          <p>Did it work? Vote on your phone!</p>
+          <div class="vote-progress">
+            <span id="votes-received">0</span> / <span id="total-voters">3</span> votes
+          </div>
+        </div>
+        <div class="timer-display">
+          <span id="voting-timer">15</span>s
+        </div>
+      </div>
+    </div>
+
+    <!-- Results Screen -->
+    <div id="results-screen" class="screen">
+      <div class="results-content">
+        <div id="result-success" class="result-display success hidden">
+          <h1>SUCCESS!</h1>
+          <div class="confetti-container" id="confetti"></div>
+        </div>
+        <div id="result-fail" class="result-display fail hidden">
+          <h1>FAILED!</h1>
+        </div>
+        <div class="result-details">
+          <p><span id="result-describer">Player</span> <span id="result-action">earned</span> <span id="result-points">+3</span> points</p>
+          <p class="vote-breakdown">
+            <span id="success-votes">2</span> Success vs <span id="fail-votes">1</span> Fail
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Game Over Screen -->
+    <div id="gameover-screen" class="screen">
+      <div class="gameover-content">
+        <h1 class="gameover-title">Game Over!</h1>
+        <div class="winner-section">
+          <p class="winner-label">Winner</p>
+          <h2 id="winner-name" class="winner-name">Player</h2>
+          <p id="winner-score" class="winner-score">15 points</p>
+        </div>
+        <div class="final-scoreboard" id="final-scoreboard"></div>
+        <p class="play-again-prompt">Scan QR code again to play!</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

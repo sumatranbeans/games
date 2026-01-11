@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Alias Auction - Controller</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Join Screen -->
+    <div id="join-screen" class="screen active">
+      <div class="logo">
+        <h1>Alias Auction</h1>
+      </div>
+      <div class="join-form">
+        <input type="text" id="player-name" placeholder="Your Name" maxlength="12" autocomplete="off">
+        <button id="join-btn" class="btn btn-primary">Join Game</button>
+      </div>
+      <p id="join-error" class="error hidden"></p>
+    </div>
+
+    <!-- Waiting Screen (Lobby) -->
+    <div id="waiting-screen" class="screen">
+      <div class="waiting-content">
+        <div class="player-info">
+          <div id="my-avatar" class="my-avatar"></div>
+          <h2 id="my-name">Player</h2>
+        </div>
+        <p class="waiting-text">Waiting for game to start...</p>
+        <div id="host-controls" class="host-controls hidden">
+          <p>You are the HOST!</p>
+          <button id="start-btn" class="btn btn-primary">Start Game</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Word Reveal Screen -->
+    <div id="reveal-screen" class="screen">
+      <div class="reveal-content">
+        <p class="round-label">Round <span id="reveal-round">1</span></p>
+        <p class="reveal-text">The word is:</p>
+        <h1 id="reveal-word" class="reveal-word">GIRAFFE</h1>
+        <p class="hint">Get ready to bid!</p>
+      </div>
+    </div>
+
+    <!-- Bidding Screen -->
+    <div id="bidding-screen" class="screen">
+      <div class="bidding-header">
+        <span id="bid-word" class="bid-word">GIRAFFE</span>
+        <div class="current-bid-info">
+          <p>Current: <span id="current-bid">5</span> words</p>
+          <p class="bidder-label">by <span id="current-bidder">-</span></p>
+        </div>
+      </div>
+      <div class="bid-buttons">
+        <button class="bid-btn" data-bid="4">4 words<span class="points">+2 pts</span></button>
+        <button class="bid-btn" data-bid="3">3 words<span class="points">+3 pts</span></button>
+        <button class="bid-btn" data-bid="2">2 words<span class="points">+4 pts</span></button>
+        <button class="bid-btn legendary" data-bid="1">1 word<span class="points">+5 pts LEGENDARY!</span></button>
+      </div>
+      <div class="timer-bar">
+        <div id="bid-timer-bar" class="timer-progress"></div>
+      </div>
+    </div>
+
+    <!-- Describing Screen (for the bidder) -->
+    <div id="describing-screen" class="screen">
+      <div class="describing-content">
+        <p class="your-turn">Your turn to describe!</p>
+        <h2 id="describe-target">GIRAFFE</h2>
+        <p class="word-budget">Use <span id="word-budget">3</span> words or less</p>
+        <div class="description-input">
+          <input type="text" id="description-input" placeholder="Type your clue..." autocomplete="off">
+          <p id="word-count" class="word-count">0 words</p>
+        </div>
+        <button id="submit-description" class="btn btn-primary">Submit</button>
+        <p id="description-error" class="error hidden"></p>
+      </div>
+    </div>
+
+    <!-- Watch Screen (waiting for describer) -->
+    <div id="watch-screen" class="screen">
+      <div class="watch-content">
+        <p class="watch-text"><span id="describer-name">Player</span> is thinking...</p>
+        <div class="thinking-animation">
+          <span></span><span></span><span></span>
+        </div>
+        <p class="watch-hint">Watch the TV!</p>
+      </div>
+    </div>
+
+    <!-- Voting Screen -->
+    <div id="voting-screen" class="screen">
+      <div class="voting-content">
+        <p class="vote-prompt">Did it work?</p>
+        <p class="description-preview">"<span id="vote-description">tall spotted animal</span>"</p>
+        <p class="for-word">for <span id="vote-target">GIRAFFE</span></p>
+        <div class="vote-buttons">
+          <button id="vote-success" class="vote-btn success">SUCCESS</button>
+          <button id="vote-fail" class="vote-btn fail">FAIL</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vote Wait Screen (for the describer) -->
+    <div id="vote-wait-screen" class="screen">
+      <div class="vote-wait-content">
+        <p class="vote-wait-text">Others are voting...</p>
+        <div class="vote-progress">
+          <span id="votes-cast">0</span> / <span id="total-voters">3</span>
+        </div>
+        <p class="fingers-crossed">Fingers crossed!</p>
+      </div>
+    </div>
+
+    <!-- Results Screen -->
+    <div id="results-screen" class="screen">
+      <div class="results-content">
+        <h1 id="result-text" class="result-text">SUCCESS!</h1>
+        <p class="score-change"><span id="points-change">+3</span> points</p>
+        <p class="my-score">Your score: <span id="my-score">5</span></p>
+      </div>
+    </div>
+
+    <!-- Game Over Screen -->
+    <div id="gameover-screen" class="screen">
+      <div class="gameover-content">
+        <h1 class="gameover-title">Game Over!</h1>
+        <div id="my-result" class="my-result"></div>
+        <button id="play-again-btn" class="btn btn-primary">Play Again</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
