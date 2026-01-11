@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QUICK THINK - GAME SHOW</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <div class="scanlines"></div>
+    <div class="crt-overlay"></div>
+
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="screen active">
+      <div class="loading-content">
+        <h1 class="blink">QUICK THINK</h1>
+        <p>LOADING...</p>
+        <div class="pixel-loader">
+          <div class="pixel"></div>
+          <div class="pixel"></div>
+          <div class="pixel"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lobby Screen -->
+    <div id="lobby-screen" class="screen">
+      <div class="game-header">
+        <h1>QUICK THINK</h1>
+        <p class="subtitle">* THE GAME SHOW *</p>
+      </div>
+
+      <div class="lobby-content">
+        <div class="join-panel">
+          <div class="panel-header">JOIN GAME</div>
+          <div class="room-code" id="room-code">----</div>
+          <div class="qr-frame">
+            <img id="qr-code" alt="SCAN ME" />
+          </div>
+          <p class="blink-slow">SCAN TO PLAY!</p>
+        </div>
+
+        <div class="players-panel">
+          <div class="panel-header">PLAYERS</div>
+          <div class="player-slots" id="player-slots">
+            <div class="player-slot empty">P1: -----</div>
+            <div class="player-slot empty">P2: -----</div>
+            <div class="player-slot empty">P3: -----</div>
+            <div class="player-slot empty">P4: -----</div>
+            <div class="player-slot empty">P5: -----</div>
+            <div class="player-slot empty">P6: -----</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lobby-controls">
+        <div class="round-select">
+          <span>ROUNDS:</span>
+          <button class="round-btn" data-length="quick">05</button>
+          <button class="round-btn active" data-length="standard">10</button>
+          <button class="round-btn" data-length="extended">15</button>
+        </div>
+        <button id="start-btn" class="start-btn" disabled>PRESS START</button>
+      </div>
+    </div>
+
+    <!-- Category Screen -->
+    <div id="category-screen" class="screen">
+      <div class="round-display">
+        ROUND <span id="current-round">01</span>/<span id="total-rounds">10</span>
+      </div>
+      <div class="category-reveal">
+        <div class="category-label">CATEGORY:</div>
+        <div class="category-text" id="category-text"></div>
+        <div class="lights">
+          <div class="light"></div>
+          <div class="light"></div>
+          <div class="light"></div>
+          <div class="light"></div>
+          <div class="light"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Countdown Screen -->
+    <div id="countdown-screen" class="screen">
+      <div class="countdown-display" id="countdown-number">3</div>
+      <div class="ready-text blink">GET READY!</div>
+    </div>
+
+    <!-- Typing Screen -->
+    <div id="typing-screen" class="screen">
+      <div class="game-board">
+        <div class="board-header">
+          <span class="category-label" id="category-reminder"></span>
+          <span class="timer-box">
+            <span class="timer-label">TIME:</span>
+            <span class="timer-value" id="typing-timer">10</span>
+          </span>
+        </div>
+        <div class="board-content">
+          <div class="typing-message blink">CONTESTANTS ARE TYPING...</div>
+          <div class="player-lights" id="player-lights">
+            <!-- Player status lights -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reveal Screen -->
+    <div id="reveal-screen" class="screen">
+      <div class="reveal-board">
+        <div class="board-title">SURVEY SAYS...</div>
+        <div class="answers-board" id="answers-board">
+          <!-- Answers will appear here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Scoring Screen -->
+    <div id="scoring-screen" class="screen">
+      <div class="high-scores">
+        <div class="scores-title">HIGH SCORES</div>
+        <div class="score-list" id="score-list">
+          <!-- Scores will appear here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Game Over Screen -->
+    <div id="gameover-screen" class="screen">
+      <div class="winner-display">
+        <div class="winner-label blink">WINNER!</div>
+        <div class="winner-name" id="winner-name"></div>
+        <div class="trophy">
+          <pre>
+    ___________
+   '._==_==_=_.'
+   .-\:      /-.
+  | (|:.     |) |
+   '-|:.     |-'
+     \::.    /
+      '::. .'
+        ) (
+      _.' '._
+     '-------'
+          </pre>
+        </div>
+      </div>
+      <div class="final-rankings" id="final-rankings">
+        <!-- Final scores -->
+      </div>
+      <button id="play-again-btn" class="arcade-btn">INSERT COIN</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

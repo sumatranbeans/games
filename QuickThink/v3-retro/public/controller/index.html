@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>QUICK THINK</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <div class="scanlines"></div>
+
+    <!-- Join Screen -->
+    <div id="join-screen" class="screen active">
+      <h1>QUICK THINK</h1>
+      <div class="terminal">
+        <p class="prompt">> ENTER NAME:</p>
+        <input
+          type="text"
+          id="player-name"
+          maxlength="8"
+          autocomplete="off"
+          autocorrect="off"
+          autocapitalize="characters"
+        />
+        <button id="join-btn" class="pixel-btn" disabled>START</button>
+      </div>
+      <p class="room-label">ROOM: <span id="room-code">----</span></p>
+    </div>
+
+    <!-- Waiting Screen -->
+    <div id="waiting-screen" class="screen">
+      <div class="player-badge">
+        <div class="badge-icon" id="player-initial"></div>
+        <p id="player-display-name"></p>
+      </div>
+      <p class="status-text" id="host-status"></p>
+      <div class="loading-dots">
+        <span>.</span><span>.</span><span>.</span>
+      </div>
+      <p class="instruction">WATCH TV</p>
+    </div>
+
+    <!-- Ready Screen -->
+    <div id="ready-screen" class="screen">
+      <p class="category-label">CATEGORY:</p>
+      <p class="category-value" id="ready-category"></p>
+      <div class="big-number" id="ready-countdown">3</div>
+      <p class="blink">GET READY!</p>
+    </div>
+
+    <!-- Typing Screen -->
+    <div id="typing-screen" class="screen">
+      <div class="typing-header">
+        <span class="category-small" id="typing-category"></span>
+        <span class="timer" id="timer-display">10</span>
+      </div>
+      <div class="terminal-input">
+        <p class="prompt">> ANSWER:</p>
+        <input
+          type="text"
+          id="answer-input"
+          maxlength="30"
+          autocomplete="off"
+          autocorrect="off"
+          autocapitalize="characters"
+        />
+      </div>
+      <p class="hint">THINK UNIQUE!</p>
+    </div>
+
+    <!-- Locked Screen -->
+    <div id="locked-screen" class="screen">
+      <div class="lock-display">
+        <p class="label">LOCKED IN:</p>
+        <p class="answer-display" id="submitted-answer"></p>
+      </div>
+      <div class="loading-dots">
+        <span>.</span><span>.</span><span>.</span>
+      </div>
+    </div>
+
+    <!-- Reveal Screen -->
+    <div id="reveal-screen" class="screen">
+      <p class="instruction blink">WATCH TV!</p>
+      <div class="loading-dots">
+        <span>.</span><span>.</span><span>.</span>
+      </div>
+    </div>
+
+    <!-- Score Screen -->
+    <div id="score-screen" class="screen">
+      <p class="label">SCORE:</p>
+      <div class="score-display" id="my-score">000</div>
+      <div class="result-box" id="round-result"></div>
+    </div>
+
+    <!-- Game Over Screen -->
+    <div id="gameover-screen" class="screen">
+      <h2 id="result-message">GAME OVER</h2>
+      <div class="final-score-display" id="final-score">000</div>
+      <p class="label">POINTS</p>
+      <p class="hint">INSERT COIN...</p>
+    </div>
+
+    <!-- Error Screen -->
+    <div id="error-screen" class="screen">
+      <h2>CONNECTION LOST</h2>
+      <p>RECONNECTING</p>
+      <div class="loading-dots">
+        <span>.</span><span>.</span><span>.</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

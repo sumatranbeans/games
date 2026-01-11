@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ALIAS AUCTION - ARCADE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="crt-overlay"></div>
+  <div class="scanlines"></div>
+
+  <div id="app">
+    <!-- Lobby Screen -->
+    <div id="lobby-screen" class="screen active">
+      <div class="arcade-header">
+        <h1 class="neon-text">ALIAS AUCTION</h1>
+        <p class="blink">INSERT COIN TO JOIN</p>
+      </div>
+
+      <div class="lobby-content">
+        <div class="qr-section">
+          <div class="qr-frame">
+            <img id="qr-code" src="" alt="QR Code">
+          </div>
+          <p class="room-code">CODE: <span id="room-code-display">----</span></p>
+          <p class="join-url" id="join-url"></p>
+        </div>
+
+        <div class="players-section">
+          <p class="section-title">HIGH SCORES</p>
+          <div id="players-list" class="players-list"></div>
+          <p class="player-count"><span id="player-count">0</span>/6 PLAYERS</p>
+        </div>
+      </div>
+
+      <div class="game-settings">
+        <div class="setting">
+          <span>LEVEL:</span>
+          <select id="difficulty-select">
+            <option value="easy">EASY</option>
+            <option value="medium" selected>MEDIUM</option>
+            <option value="hard">HARD</option>
+          </select>
+        </div>
+        <div class="setting">
+          <span>ROUNDS:</span>
+          <select id="rounds-select">
+            <option value="quick">5</option>
+            <option value="standard" selected>7</option>
+            <option value="extended">10</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Word Reveal Screen -->
+    <div id="word-reveal-screen" class="screen">
+      <p class="phase-label">STAGE <span id="reveal-round">1</span></p>
+      <div class="word-reveal">
+        <p class="reveal-intro">TARGET:</p>
+        <h1 id="reveal-word" class="pixel-word">GIRAFFE</h1>
+      </div>
+      <div class="pixel-timer">
+        <div id="reveal-timer-bar" class="timer-fill"></div>
+      </div>
+    </div>
+
+    <!-- Bidding Screen -->
+    <div id="bidding-screen" class="screen">
+      <p class="phase-label">STAGE <span id="bidding-round">1</span> - BIDDING</p>
+
+      <div class="target-word">
+        <span id="bidding-word">GIRAFFE</span>
+      </div>
+
+      <div class="bid-display">
+        <div class="bid-box">
+          <span class="bid-label">CURRENT BID</span>
+          <span id="current-bid" class="bid-number">5</span>
+          <span class="bid-unit">WORDS</span>
+        </div>
+        <div class="bidder-box">
+          <span id="bidder-name">NO BIDS</span>
+          <span class="points-preview"><span id="potential-points">1</span> PTS</span>
+        </div>
+      </div>
+
+      <div class="timer-display">
+        <span id="bidding-timer">30</span>
+      </div>
+
+      <div class="scoreboard" id="bidding-scoreboard"></div>
+    </div>
+
+    <!-- Describing Screen -->
+    <div id="describing-screen" class="screen">
+      <p class="phase-label">DESCRIBE PHASE</p>
+
+      <div class="describe-info">
+        <p class="describer"><span id="describer-name">PLAYER</span></p>
+        <h1 id="describe-word" class="pixel-word">GIRAFFE</h1>
+        <p class="word-limit"><span id="word-limit">3</span> WORDS MAX</p>
+      </div>
+
+      <div class="loading-bar">
+        <span></span><span></span><span></span><span></span>
+      </div>
+
+      <div class="timer-display">
+        <span id="describing-timer">20</span>
+      </div>
+    </div>
+
+    <!-- Voting Screen -->
+    <div id="voting-screen" class="screen">
+      <p class="phase-label">VOTE NOW!</p>
+
+      <div class="description-display">
+        <p class="by"><span id="voter-describer-name">PLAYER</span> SAID:</p>
+        <h2 id="shown-description" class="description-text">"TALL SPOTTED ANIMAL"</h2>
+        <p class="for-word">FOR: <span id="vote-word">GIRAFFE</span></p>
+      </div>
+
+      <div class="vote-count">
+        VOTES: <span id="votes-received">0</span>/<span id="total-voters">3</span>
+      </div>
+
+      <div class="timer-display">
+        <span id="voting-timer">15</span>
+      </div>
+    </div>
+
+    <!-- Results Screen -->
+    <div id="results-screen" class="screen">
+      <div id="result-success" class="result success hidden">
+        <h1 class="flash">SUCCESS!</h1>
+      </div>
+      <div id="result-fail" class="result fail hidden">
+        <h1 class="shake">FAILED!</h1>
+      </div>
+      <div class="result-details">
+        <p><span id="result-describer">PLAYER</span></p>
+        <p class="points"><span id="result-points">+3</span> PTS</p>
+        <p class="votes"><span id="success-votes">2</span> YES / <span id="fail-votes">1</span> NO</p>
+      </div>
+    </div>
+
+    <!-- Game Over Screen -->
+    <div id="gameover-screen" class="screen">
+      <h1 class="gameover-title flash">GAME OVER</h1>
+
+      <div class="winner-display">
+        <p class="winner-label">WINNER</p>
+        <h2 id="winner-name" class="neon-text">PLAYER</h2>
+        <p id="winner-score" class="winner-score">15 PTS</p>
+      </div>
+
+      <div class="high-scores" id="final-scoreboard"></div>
+
+      <p class="blink">PRESS START TO CONTINUE</p>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
